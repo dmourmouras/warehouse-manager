@@ -1,0 +1,733 @@
+{
+	"info": {
+		"_postman_id": "eaba99d1-3005-4324-b2b3-4abb1c07b803",
+		"name": "WarehouseManager",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "articles",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/articles",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"articles"
+					]
+				},
+				"description": "Get all articles"
+			},
+			"response": [
+				{
+					"name": "articles",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/articles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"articles"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 15 Mar 2021 21:08:38 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"leg\",\n        \"stock\": 12,\n        \"depended_products\": [\n            {\n                \"id\": 1,\n                \"amount_needed\": 4\n            },\n            {\n                \"id\": 4,\n                \"amount_needed\": 4\n            }\n        ]\n    },\n    {\n        \"id\": 2,\n        \"name\": \"screw\",\n        \"stock\": 17,\n        \"depended_products\": [\n            {\n                \"id\": 2,\n                \"amount_needed\": 8\n            },\n            {\n                \"id\": 5,\n                \"amount_needed\": 8\n            }\n        ]\n    },\n    {\n        \"id\": 3,\n        \"name\": \"seat\",\n        \"stock\": 2,\n        \"depended_products\": [\n            {\n                \"id\": 3,\n                \"amount_needed\": 1\n            }\n        ]\n    },\n    {\n        \"id\": 4,\n        \"name\": \"table top\",\n        \"stock\": 1,\n        \"depended_products\": [\n            {\n                \"id\": 6,\n                \"amount_needed\": 1\n            }\n        ]\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "articles/{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/articles/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"articles",
+						"1"
+					]
+				},
+				"description": "Get article by id"
+			},
+			"response": [
+				{
+					"name": "GET articles/{id}",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/articles/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"articles",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 15 Mar 2021 19:10:50 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"name\": \"leg\",\n    \"stock\": 12,\n    \"depended_products\": [\n        {\n            \"id\": 1,\n            \"amount_needed\": 4\n        },\n        {\n            \"id\": 4,\n            \"amount_needed\": 4\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "articles",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"inventory\": [\n    {\n      \"name\": \"leg\",\n      \"stock\": \"1000\"\n    },\n    {\n      \"name\": \"screwdriver\",\n      \"stock\": \"1000\"\n    }\n  ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/articles",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"articles"
+					]
+				},
+				"description": "Creates article if name does not exist or adds stock to current stock if article with given name is found"
+			},
+			"response": [
+				{
+					"name": "POST articles",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"inventory\": [\n    {\n      \"name\": \"bolt\",\n      \"stock\": \"5\"\n    },\n    {\n      \"name\": \"screw\",\n      \"stock\": \"50\"\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/articles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"articles"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 15 Mar 2021 20:16:16 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"inventory\": [\n        {\n            \"id\": \"7\",\n            \"name\": \"bolt\",\n            \"stock\": \"5\"\n        },\n        {\n            \"id\": \"2\",\n            \"name\": \"screw\",\n            \"stock\": \"67\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products"
+					]
+				},
+				"description": "Get all products"
+			},
+			"response": [
+				{
+					"name": "products",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 15 Mar 2021 21:05:42 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Dining Chair\",\n        \"price\": 60,\n        \"articles\": [\n            {\n                \"id\": 1,\n                \"amount_needed\": 4\n            },\n            {\n                \"id\": 2,\n                \"amount_needed\": 8\n            },\n            {\n                \"id\": 3,\n                \"amount_needed\": 1\n            }\n        ],\n        \"productArticles\": [\n            {\n                \"id\": 1,\n                \"amount_needed\": 4\n            },\n            {\n                \"id\": 2,\n                \"amount_needed\": 8\n            },\n            {\n                \"id\": 3,\n                \"amount_needed\": 1\n            }\n        ]\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Dinning Table\",\n        \"price\": 199.99,\n        \"articles\": [\n            {\n                \"id\": 4,\n                \"amount_needed\": 4\n            },\n            {\n                \"id\": 5,\n                \"amount_needed\": 8\n            },\n            {\n                \"id\": 6,\n                \"amount_needed\": 1\n            }\n        ],\n        \"productArticles\": [\n            {\n                \"id\": 4,\n                \"amount_needed\": 4\n            },\n            {\n                \"id\": 5,\n                \"amount_needed\": 8\n            },\n            {\n                \"id\": 6,\n                \"amount_needed\": 1\n            }\n        ]\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "products/{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/products/10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"10"
+					]
+				},
+				"description": "Get product by id"
+			},
+			"response": [
+				{
+					"name": "GET products",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/products/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 15 Mar 2021 20:52:55 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"name\": \"Dining Chair\",\n    \"price\": 60,\n    \"articles\": [\n        {\n            \"id\": 1,\n            \"amount_needed\": 4\n        },\n        {\n            \"id\": 2,\n            \"amount_needed\": 8\n        },\n        {\n            \"id\": 3,\n            \"amount_needed\": 1\n        }\n    ],\n    \"productArticles\": [\n        {\n            \"id\": 1,\n            \"amount_needed\": 4\n        },\n        {\n            \"id\": 2,\n            \"amount_needed\": 8\n        },\n        {\n            \"id\": 3,\n            \"amount_needed\": 1\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "products/{id}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/products/10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"10"
+					]
+				},
+				"description": "Delete product by id"
+			},
+			"response": [
+				{
+					"name": "products/{id}",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/products/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"2"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 15 Mar 2021 21:00:37 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "products",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"products\": [\n    {\n      \"name\": \"Desk Chair\",\n      \"price\": \"80.0\",\n      \"articles\": [\n        {\n          \"id\": \"1\",\n          \"amount_of\": \"5\"\n        },\n        {\n          \"id\": \"2\",\n          \"amount_of\": \"10\"\n        },\n        {\n          \"id\": \"4\",\n          \"amount_of\": \"1\"\n        }\n      ]\n    }\n  ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products"
+					]
+				},
+				"description": "Create products"
+			},
+			"response": [
+				{
+					"name": "POST products",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"products\": [\n    {\n      \"name\": \"Desk Chair\",\n      \"price\": \"80.0\",\n      \"articles\": [\n        {\n          \"id\": \"1\",\n          \"amount_of\": \"5\"\n        },\n        {\n          \"id\": \"2\",\n          \"amount_of\": \"10\"\n        },\n        {\n          \"id\": \"4\",\n          \"amount_of\": \"1\"\n        }\n      ]\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 15 Mar 2021 20:53:36 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"products\": [\n        {\n            \"id\": \"3\",\n            \"name\": \"Desk Chair\",\n            \"price\": \"80.0\",\n            \"articles\": [\n                {\n                    \"id\": \"1\",\n                    \"amount_of\": \"5\"\n                },\n                {\n                    \"id\": \"2\",\n                    \"amount_of\": \"10\"\n                },\n                {\n                    \"id\": \"4\",\n                    \"amount_of\": \"1\"\n                }\n            ]\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "products/{id}/sale?quantity={}",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/products/1/sale",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"1",
+						"sale"
+					]
+				},
+				"description": "'Sells' a product in the quantity specified. In practical terms, removes the relevant articles from the warehouse"
+			},
+			"response": [
+				{
+					"name": "POST products/1/sale",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/products/1/sale?quantity=6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"1",
+								"sale"
+							],
+							"query": [
+								{
+									"key": "quantity",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "41"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 15 Mar 2021 21:01:42 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "Insufficient stock for article with id: 1"
+				}
+			]
+		},
+		{
+			"name": "products/{id}/available_quantity",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/products/1/available_quantity",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"1",
+						"available_quantity"
+					]
+				},
+				"description": "Returns the maximum quantity for a product based on the available articles in the warehouse"
+			},
+			"response": [
+				{
+					"name": "products/{id}/available_quantity",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/products/2/available_quantity",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"2",
+								"available_quantity"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 15 Mar 2021 21:04:30 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"2\",\n    \"available_quantity\": \"1\"\n}"
+				}
+			]
+		},
+		{
+			"name": "products/availability",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"products\": [\n    {\n      \"id\": \"1\",\n      \"quantity\": \"80\"\n    },\n    {\n      \"id\": \"2\",\n      \"quantity\": \"2\"\n    }\n  ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/products/availability",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"availability"
+					]
+				},
+				"description": "Checks if a whole order(a collection of products in the quantities wanted) is possible based on the available stock"
+			},
+			"response": [
+				{
+					"name": "products/availability",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"products\": [\n    {\n      \"id\": \"1\",\n      \"quantity\": \"1\"\n    },\n    {\n      \"id\": \"2\",\n      \"quantity\": \"4\"\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/products/availability",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"availability"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 15 Mar 2021 21:05:02 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"is_order_possible\": \"false\"\n}"
+				}
+			]
+		}
+	]
+}
