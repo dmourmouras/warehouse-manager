@@ -1,0 +1,15 @@
+logging:
+  level:
+    root: INFO
+    com.dm: ${LOGGING_LEVEL}
+
+spring:
+  datasource:
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      dialect: org.hibernate.dialect.PostgreSQLDialect

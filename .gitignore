@@ -1,0 +1,14 @@
+target/
+.project
+.classpath
+.settings/
+.idea/
+*.iml
+data/
+/chart/charts/*
+/*.tgz
+pom.xml.versionsBackup
+.md.ci/build/secret
+*.DS_Store
+.env
+Chart.lock
