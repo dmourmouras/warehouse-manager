@@ -18,10 +18,10 @@ Once application is up and running you can reach the api at:
 If changes are made to project, to redeploy:
 * Make build run
 
-### Api 
+### API
 
 In postman_collection.json file there are example requests and responses for all the available web services with 
-descriptions. It can be imported to Postman (or be read as documentation).
+descriptions. It can be imported to Postman (or it can be read as documentation).
 
 List of services:
 
