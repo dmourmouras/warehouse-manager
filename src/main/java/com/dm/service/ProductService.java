@@ -17,7 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -36,7 +35,7 @@ public class ProductService {
         this.articleRepository = articleRepository;
     }
 
-    @Transactional(rollbackFor = Exception.class)
+    @Transactional
     public ProductAdditionDto createProducts(ProductAdditionDto productAdditionDto) {
         logger.info("Request to create new products: {}", productAdditionDto);
 
@@ -52,16 +51,14 @@ public class ProductService {
             productsNewState.getProducts().add(productSavedDto);
 
             productDto.getArticles().forEach(articleDto -> {
-                final Optional<Article> articleDBOptional = articleRepository.findById(Long.parseLong(articleDto.getId()));
-                if (articleDBOptional.isEmpty()) {
-                    throw new WarehouseManagerException("Article with id: " + articleDto.getId() + " does not exist. " +
-                            "All the necessary articles should exist before creating the product");
-                }
+                final Article articleDB = articleRepository.findById(Long.parseLong(articleDto.getId()))
+                        .orElseThrow(() -> new WarehouseManagerException("Article with id: " + articleDto.getId() +
+                                " does not exist. All the necessary articles should exist before creating the product"));
                 validateNumeric(articleDto.getAmount(), "amount_of");
-                ProductArticle productArticleNew = new ProductArticle(productSaved, articleDBOptional.get(),
+                ProductArticle productArticleNew = new ProductArticle(productSaved, articleDB,
                         Integer.parseInt(articleDto.getAmount()));
                 productArticleRepository.save(productArticleNew);
-                productSavedDto.getArticles().add(new ArticleDto(articleDBOptional.get().getId().toString(),
+                productSavedDto.getArticles().add(new ArticleDto(articleDB.getId().toString(),
                         articleDto.getAmount()));
             });
         });

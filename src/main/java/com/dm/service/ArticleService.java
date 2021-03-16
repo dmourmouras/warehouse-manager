@@ -22,8 +22,8 @@ public class ArticleService {
         this.articleRepository = articleRepository;
     }
 
-    // Creates article if name does not exist or adds stock to current stock if article with given name is found.
-    @Transactional(rollbackFor = Exception.class)
+    // Creates article if name does not exist or adds stock to current inventory if article with given name is found.
+    @Transactional
     public ArticleAdditionDto addInventory(ArticleAdditionDto articleAdditionDto) {
         logger.info("Request to add inventory: {}", articleAdditionDto);
 
