@@ -20,7 +20,7 @@ If changes are made to project, to redeploy:
 
 ### Api 
 
-In postman_collection.json file there are example requests and responsesfor all the available web services with 
+In postman_collection.json file there are example requests and responses for all the available web services with 
 descriptions. It can be imported to Postman (or be read as documentation).
 
 List of services:
